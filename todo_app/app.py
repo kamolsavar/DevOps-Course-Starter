@@ -10,13 +10,17 @@ app.config.from_object(Config)
 
 @app.route('/')
 def index():
-    return render_template('index.html', list = list)
+    list = session_items.get_items()
+    return  render_template('index.html', list=list)
 
 @app.route('/addTitles')
 def addTitle():
     return session_items.add_item('Never Land')
-def getTitle():
-    return session_items.get_item('4')         
+    
+@app.route('/add', methods=['POST'])
+def add():
+	item = Todo(request.form["title"], request.form["description"])
+	item.add()
+	return redirect('/')        
 
-if __name__ == '__main__':
-    app.run()
+app.run()
