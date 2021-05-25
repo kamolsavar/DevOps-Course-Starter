@@ -6,15 +6,24 @@
     <h1 class="display-4">To-Do App</h1>
     <p class="lead">Just another to-do app.</p>
   </div>
+  
+    <form action="http://127.0.0.1:5000/addNewTitle" method="post">
+        <label for="title">Enter your title: </label>
+        <p><input type="text" name="nm"></p>
+        <p><input type = "submit" value = "submit" /></p>    
+    </form> 
 
   <div class="row">
     <div class="col-md-12">
       <h2>Items</h2>
       <ul class="list-group mb-4">
-        <table>
+        <table class="table"> <!--BootStrap-->
+          <tr><th>Id</th><th>ToDo</th><th>Status</th></tr>
           {% for item in list %}
           <tr>
-            <td> {{item}} </td> 
+            <td> {{item.id}} </td> 
+            <td> {{item.title}} </td>
+            <td> {{item.status}} </td> 
           </tr>
           {% endfor %}  
         </table>

@@ -15,16 +15,12 @@ def index():
 def hello(name):
    return 'welcome %s' % name
 
-@app.route('/addNewTitle',methods = ['POST', 'GET'])
+@app.route('/addNewTitle',methods = ['POST'])
 def addTitle():
-   if request.method == 'POST':
-      todo = request.form.get('nm')
-      print(todo)
-      # session_items.add_item(user)
-      return session_items.add_item(todo)
-      # return redirect(url_for('index'))   
-   else:
-     todo = request.args.get('nm')
-     return redirect(url_for('hello',name = todo))   
+   todo = request.form.get('nm')
+   print(todo)
+   session_items.add_item(todo)
+   # return session_items.add_item(todo)
+   return redirect(url_for('index'))  
 
 app.run()
