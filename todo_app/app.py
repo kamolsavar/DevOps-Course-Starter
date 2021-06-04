@@ -29,7 +29,7 @@ def getAllToDoFromTrell0():
    trelloList= requests.get(f'https://api.trello.com/1/boards/{id}/cards', params={'key': KEY, 'token': TOKEN}).json()
    for card in trelloList:
       if card ["idList"] =="60af9248e87283184d346aa9":
-         status = "To Do"
+         status = "ToDo"
       elif card ["idList"]=="60af9248e87283184d346aaa":
          status = 'Doing'   
       else:
@@ -83,12 +83,14 @@ def addTitle():
    # print("The response is:" + response)
    return redirect(url_for('index'))  
 
-@app.route('/updateCard/<cardId>')
-def updateCard(cardId):
-   # cardId = '60afa040b07e9a4371098530'
-   # idList = '0af9248e87283184d346aa9'
-   # idList = '60af9248e87283184d346aaa'
-   idList = '60af9248e87283184d346aab'
+@app.route('/updateCard/<cardId>/<status>')
+def updateCard(cardId, status):
+   if status == "ToDo":
+      idList = '60af9248e87283184d346aa9'
+   elif status == "Doing":
+      idList = '60af9248e87283184d346aaa'
+   else: 
+      idList = '60af9248e87283184d346aab'
    r= requests.put(f'https://api.trello.com/1/cards/{cardId}',  params={'key': KEY, 'token': TOKEN, 'idList': idList})
    response = r.json()
    return redirect(url_for('index')) 
