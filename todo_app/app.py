@@ -86,11 +86,12 @@ def addTitle():
 @app.route('/updateCard/<cardId>')
 def updateCard(cardId):
    # cardId = '60afa040b07e9a4371098530'
+   # idList = '0af9248e87283184d346aa9'
    # idList = '60af9248e87283184d346aaa'
-   idList = '60af9fb7b29da277db69d121'
+   idList = '60af9248e87283184d346aab'
    r= requests.put(f'https://api.trello.com/1/cards/{cardId}',  params={'key': KEY, 'token': TOKEN, 'idList': idList})
    response = r.json()
-   return response
+   return redirect(url_for('index')) 
 
 app.run()
 # updateCard()
