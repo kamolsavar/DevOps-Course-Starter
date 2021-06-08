@@ -10,18 +10,21 @@ app.config.from_object(Config)
 
 KEY=os.getenv("KEY")
 TOKEN=os.getenv("TOKEN")
-    
 
-class TransportAPI:
-    def __init__(self):
-        api_keys = get_application_keys()
-        self.payload = api_keys
-
+class ViewModel:
+    def _init_(self, items):
+        self._items = items
+        
+    @property
+    def items(self):
+        self_items = getAllToDoFromTrell0() 
+        return self_items 
 
 @app.route('/index')
 def index():
-    list = getAllToDoFromTrell0()
-    return  render_template('index.html', list=list)
+    viewModel=ViewModel()
+    item_view_model= viewModel
+    return  render_template('index.html', view_model=item_view_model)
 
 def getAllToDoFromTrell0():
    id = '60af9248e87283184d346aa8'
