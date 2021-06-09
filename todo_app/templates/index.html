@@ -32,6 +32,26 @@
           </tr>
           {% endfor %}  
         </table>
+        <table class="table"> <!--BootStrap-->
+          <tr><th>Id</th><th>ToDo</th><th>Status</th></tr>
+          {% for item in view_model.itemsDoing %}
+          <tr>
+            <td> {{item.id}} </td> 
+            <td> {{item.title}} </td>
+            <td> {{item.status}} </td> 
+          </tr>
+          {% endfor %}  
+        </table>
+        <table class="table"> <!--BootStrap-->
+          <tr><th>Id</th><th>ToDo</th><th>Status</th></tr>
+          {% for item in view_model.itemsDone %}
+          <tr>
+            <td> {{item.id}} </td> 
+            <td> {{item.title}} </td>
+            <td> {{item.status}} </td> 
+          </tr>
+          {% endfor %}  
+        </table>
         <!-- List the todo items here -->
       </ul>
     </div>

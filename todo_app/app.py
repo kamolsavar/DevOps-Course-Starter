@@ -14,16 +14,25 @@ TOKEN=os.getenv("TOKEN")
 class ViewModel:
     def _init_(self, items):
         self._items = items
-        
+
     @property
     def items(self):
-        self_items = getAllToDoFromTrell0() 
+        self_items = getAllToDoFromTrell0()
         return self_items 
+
+    @property
+    def itemsDoing(self):
+        self_items = getAllDoingFromTrell0() 
+        return self_items 
+
+    @property
+    def itemsDone(self):
+        self_items = getAllDoneFromTrell0() 
+        return self_items     
 
 @app.route('/index')
 def index():
-    viewModel=ViewModel()
-    item_view_model= viewModel
+    item_view_model= ViewModel()
     return  render_template('index.html', view_model=item_view_model)
 
 def getAllToDoFromTrell0():
@@ -31,14 +40,28 @@ def getAllToDoFromTrell0():
    list= []
    trelloList= requests.get(f'https://api.trello.com/1/boards/{id}/cards', params={'key': KEY, 'token': TOKEN}).json()
    for card in trelloList:
-      if card ["idList"] =="60af9248e87283184d346aa9":
-         status = "ToDo"
-      elif card ["idList"]=="60af9248e87283184d346aaa":
-         status = 'Doing'   
-      else:
-         status = "Done"
-      list.append({"status":status, "id":card["id"], "title":card["name"]})
-   return list  
+      if card ["idList"] =="60af9248e87283184d346aa9": 
+        list.append({"status":"ToDo", "id":card["id"], "title":card["name"]})
+   return list
+  
+def getAllDoingFromTrell0():
+   id = '60af9248e87283184d346aa8'
+   list= []
+   trelloList= requests.get(f'https://api.trello.com/1/boards/{id}/cards', params={'key': KEY, 'token': TOKEN}).json()
+   for card in trelloList:
+      if card ["idList"] =="60af9248e87283184d346aaa": 
+        list.append({"status":"Doing", "id":card["id"], "title":card["name"]})
+   return list
+
+def getAllDoneFromTrell0():
+   id = '60af9248e87283184d346aa8'
+   list= []
+   trelloList= requests.get(f'https://api.trello.com/1/boards/{id}/cards', params={'key': KEY, 'token': TOKEN}).json()
+   for card in trelloList:
+      if card ["idList"] =="60af9248e87283184d346aab": 
+         list.append({"status":"Done", "id":card["id"], "title":card["name"]})
+   return list
+
 
 def createBoard():
    name='ToDoList'
