@@ -12,51 +12,44 @@ KEY=os.getenv("KEY")
 TOKEN=os.getenv("TOKEN")
 
 class ViewModel:
-    def _init_(self, items):
+    def __init__(self, items):
         self._items = items
 
     @property
-    def items(self):
-        self_items = getAllToDoFromTrell0()
-        return self_items 
+    def itemsToDo(self):
+        return get_ToDo_Trello(self._items)
 
     @property
     def itemsDoing(self):
-        self_items = getAllDoingFromTrell0() 
-        return self_items 
+        return get_Doing_Trello(self._items)
 
     @property
     def itemsDone(self):
-        self_items = getAllDoneFromTrell0() 
-        return self_items     
+        return get_Done_Trello(self._items)  
 
 @app.route('/index')
 def index():
-    item_view_model= ViewModel()
+    id = '60af9248e87283184d346aa8'
+    trelloList= requests.get(f'https://api.trello.com/1/boards/{id}/cards', params={'key': KEY, 'token': TOKEN}).json()
+    item_view_model= ViewModel(trelloList)
     return  render_template('index.html', view_model=item_view_model)
 
-def getAllToDoFromTrell0():
-   id = '60af9248e87283184d346aa8'
+def get_ToDo_Trello( trelloList):
    list= []
-   trelloList= requests.get(f'https://api.trello.com/1/boards/{id}/cards', params={'key': KEY, 'token': TOKEN}).json()
    for card in trelloList:
       if card ["idList"] =="60af9248e87283184d346aa9": 
         list.append({"status":"ToDo", "id":card["id"], "title":card["name"]})
    return list
   
-def getAllDoingFromTrell0():
-   id = '60af9248e87283184d346aa8'
+def get_Doing_Trello(trelloList):
    list= []
-   trelloList= requests.get(f'https://api.trello.com/1/boards/{id}/cards', params={'key': KEY, 'token': TOKEN}).json()
    for card in trelloList:
       if card ["idList"] =="60af9248e87283184d346aaa": 
         list.append({"status":"Doing", "id":card["id"], "title":card["name"]})
    return list
 
-def getAllDoneFromTrell0():
-   id = '60af9248e87283184d346aa8'
+def get_Done_Trello(trelloList):
    list= []
-   trelloList= requests.get(f'https://api.trello.com/1/boards/{id}/cards', params={'key': KEY, 'token': TOKEN}).json()
    for card in trelloList:
       if card ["idList"] =="60af9248e87283184d346aab": 
          list.append({"status":"Done", "id":card["id"], "title":card["name"]})
@@ -122,4 +115,3 @@ def updateCard(cardId, status):
    return redirect(url_for('index')) 
 
 app.run()
-# updateCard()

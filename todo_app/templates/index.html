@@ -23,8 +23,8 @@
       <h2>Items</h2>
       <ul class="list-group mb-4">
         <table class="table"> <!--BootStrap-->
-          <tr><th>Id</th><th>ToDo</th><th>Status</th></tr>
-          {% for item in view_model.items %}
+          <tr><th>Id</th><th>Title</th><th>Status</th></tr>
+          {% for item in view_model.itemsToDo %}
           <tr>
             <td> {{item.id}} </td> 
             <td> {{item.title}} </td>
@@ -33,7 +33,7 @@
           {% endfor %}  
         </table>
         <table class="table"> <!--BootStrap-->
-          <tr><th>Id</th><th>ToDo</th><th>Status</th></tr>
+          <tr><th>Id</th><th>Title</th><th>Status</th></tr>
           {% for item in view_model.itemsDoing %}
           <tr>
             <td> {{item.id}} </td> 
@@ -43,7 +43,7 @@
           {% endfor %}  
         </table>
         <table class="table"> <!--BootStrap-->
-          <tr><th>Id</th><th>ToDo</th><th>Status</th></tr>
+          <tr><th>Id</th><th>Title</th><th>Status</th></tr>
           {% for item in view_model.itemsDone %}
           <tr>
             <td> {{item.id}} </td> 
