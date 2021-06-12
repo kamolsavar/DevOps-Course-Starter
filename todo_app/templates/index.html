@@ -14,7 +14,7 @@
         <label for="title">Update your card: </label>
         <p><input type="text" id="cardId"></p>
         <input type="button" onclick="window.location.href='/updateCard/60afa040b07e9a4371098530/ToDo';" value="ToDo"/>
-        <input type="button" onclick="window.location.href='/updateCard/60afa040b07e9a4371098530/Doing';" value="Doing"/> 
+        <input type="button" onclick="window.location.href='/updateCard/60ba56e3c65988272ee6da55/Doing';" value="Doing"/> 
         <input type="button" onclick="window.location.href='/updateCard/60afa040b07e9a4371098530/Done';" value="Done"/> 
     </form> 
 
@@ -23,7 +23,7 @@
       <h2>Items</h2>
       <ul class="list-group mb-4">
         <table class="table"> <!--BootStrap-->
-          <tr><th>Id</th><th>ToDo</th><th>Status</th></tr>
+          <tr><th>Id</th><th>Title</th><th>Status</th></tr>
           {% for item in list %}
           <tr>
             <td> {{item.id}} </td> 
