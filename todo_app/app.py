@@ -17,6 +17,27 @@ ID_LIST_DOING=os.getenv("ID_LIST_DOING")
 ID_LIST_DONE=os.getenv("ID_LIST_DONE")
 
 
+class Item:
+   
+   def __init__(self, id, title, status):
+      self.title = title
+      self.status = status
+      self.id = id
+
+@app.route("/card/<name>/<status>")
+def createCard(name, status):
+   # todo = request.form.get('nm')
+   
+   if status == "ToDo":
+      idList = ID_LIST_TODO
+   elif status == "Doing":
+      idList = ID_LIST_DOING
+   else:
+         idList = ID_LIST_DONE
+   r= requests.post('https://api.trello.com/1/cards',  params={'key': KEY, 'token': TOKEN, 'idList' : idList, 'name' : name})
+   response = r.json()
+   return redirect(url_for('index'))  
+
 @app.route('/index')
 def index():
     list = getAllToDoFromTrello()
@@ -32,18 +53,10 @@ def getAllToDoFromTrello():
          status = 'Doing'   
       else:
          status = "Done"
-      list.append({"status":status, "id":card["id"], "title":card["name"]})
-   return list   
-
-
-@app.route('/createCard')
-def createCard():
-   idList = ID_LIST_TODO
-   r= requests.post('https://api.trello.com/1/cards',  params={'key': KEY, 'token': TOKEN, 'idList' : idList, 'name' : 'canoeing'})
-   response = r.json()
-   return response
+      # list.append({"status":status, "id":card["id"], "title":card["name"]})
+      list.append(Item(card["id"], card["name"], status))
+   return list  
  
-
 @app.route('/addNewTitle',methods = ['POST'])
 def addTitle():
    todo = request.form.get('nm')

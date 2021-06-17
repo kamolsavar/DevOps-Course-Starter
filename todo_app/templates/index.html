@@ -12,11 +12,8 @@
         <p><input type="text" name="nm"></p>
         <p><input type = "submit" value = "submit" /></p>
         <label for="title">Update your card: </label>
-        <p><input type="text" id="cardId"></p>
-        <input type="button" onclick="window.location.href='/updateCard/60afa040b07e9a4371098530/ToDo';" value="ToDo"/>
-        <input type="button" onclick="window.location.href='/updateCard/60ba56e3c65988272ee6da55/Doing';" value="Doing"/> 
-        <input type="button" onclick="window.location.href='/updateCard/60afa040b07e9a4371098530/Done';" value="Done"/> 
     </form> 
+    
 
   <div class="row">
     <div class="col-md-12">
@@ -28,7 +25,11 @@
           <tr>
             <td> {{item.id}} </td> 
             <td> {{item.title}} </td>
-            <td> {{item.status}} </td> 
+            <td> {{item.status}} 
+            <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/ToDo';" value="ToDo"/>
+            <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/Doing';" value="Doing"/> 
+            <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/Done';" value="Done"/>
+            </td>   
           </tr>
           {% endfor %}  
         </table>
