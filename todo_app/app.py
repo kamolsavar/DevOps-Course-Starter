@@ -22,21 +22,7 @@ class Item:
    def __init__(self, id, title, status):
       self.title = title
       self.status = status
-      self.id = id
-
-@app.route("/card/<name>/<status>")
-def createCard(name, status):
-   # todo = request.form.get('nm')
-   
-   if status == "ToDo":
-      idList = ID_LIST_TODO
-   elif status == "Doing":
-      idList = ID_LIST_DOING
-   else:
-         idList = ID_LIST_DONE
-   r= requests.post('https://api.trello.com/1/cards',  params={'key': KEY, 'token': TOKEN, 'idList' : idList, 'name' : name})
-   response = r.json()
-   return redirect(url_for('index'))  
+      self.id = id  
 
 @app.route('/index')
 def index():
