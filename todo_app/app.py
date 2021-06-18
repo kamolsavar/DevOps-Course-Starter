@@ -12,91 +12,55 @@ app.config.from_object(Config)
 KEY=os.getenv("KEY")
 TOKEN=os.getenv("TOKEN")
 
+BOARD_ID=os.getenv("BOARD_ID")
+ID_LIST_TODO=os.getenv("ID_LIST_TODO")
+ID_LIST_DOING=os.getenv("ID_LIST_DOING")
+ID_LIST_DONE=os.getenv("ID_LIST_DONE")
+
+
+class Item:
+   def __init__(self, id, title, status):
+      self.title = title
+      self.status = status
+      self.id = id  
+
 @app.route('/index')
 def index():
-    id = '60af9248e87283184d346aa8'
-    trelloList= requests.get(f'https://api.trello.com/1/boards/{id}/cards', params={'key': KEY, 'token': TOKEN}).json()
-    item_view_model= ViewModel(trelloList)
-    return  render_template('index.html', view_model=item_view_model)
+    list = getAllToDoFromTrello()
+    return  render_template('index.html', list=list)
 
-def get_ToDo_Trello( trelloList):
+def getAllToDoFromTrello():
    list= []
+   trelloList= requests.get(f'https://api.trello.com/1/boards/{BOARD_ID}/cards', params={'key': KEY, 'token': TOKEN}).json()
    for card in trelloList:
-      if card ["idList"] =="60af9248e87283184d346aa9": 
-        list.append({"status":"ToDo", "id":card["id"], "title":card["name"]})
-   return list
-  
-def get_Doing_Trello(trelloList):
-   list= []
-   for card in trelloList:
-      if card ["idList"] =="60af9248e87283184d346aaa": 
-        list.append({"status":"Doing", "id":card["id"], "title":card["name"]})
-   return list
-
-def get_Done_Trello(trelloList):
-   list= []
-   for card in trelloList:
-      if card ["idList"] =="60af9248e87283184d346aab": 
-         list.append({"status":"Done", "id":card["id"], "title":card["name"]})
-   return list
-
-
-def createBoard():
-   name='ToDoList'
-   r= requests.post('https://api.trello.com/1/boards', params={'key': KEY, 'token': TOKEN, 'name': name})
-   response=r.json()
-   return response  
-
-def getBoard():
-   id = '60af9248e87283184d346aa8'
-   r= requests.get(f'https://api.trello.com/1/boards/{id}', params={'key': KEY, 'token': TOKEN})
-   response=r.json()
-   return response     
-
-
-def createCardList():
-   name='Monday'
-   boardId= '60af9248e87283184d346aa8'
-   r= requests.post(f'https://api.trello.com/1/boards/{boardId}/lists',  params={'key': KEY, 'token': TOKEN, 'name': name})
-   response=r.json()
-   return response  
-
-@app.route('/createCard')
-def createCard():
-   idList = '60af9248e87283184d346aa9'
-   r= requests.post('https://api.trello.com/1/cards',  params={'key': KEY, 'token': TOKEN, 'idList' : idList, 'name' : 'canoeing'})
-   response = r.json()
-   return response
-
-@app.route('/getCard')
-def getCard():
-   cardId = '60afa040b07e9a4371098530'
-   r= requests.get(f'https://api.trello.com/1/cards/{cardId}', params={'key': KEY, 'token': TOKEN})
-   response=r.json()
-   # cardName = response.name
-   # print(cardName)
-   return response     
-
+      if card ["idList"] == ID_LIST_TODO:
+         status = "ToDo"
+      elif card ["idList"]== ID_LIST_DOING:
+         status = 'Doing'   
+      else:
+         status = "Done"
+      # list.append({"status":status, "id":card["id"], "title":card["name"]})
+      list.append(Item(card["id"], card["name"], status))
+   return list  
+ 
 @app.route('/addNewTitle',methods = ['POST'])
 def addTitle():
    todo = request.form.get('nm')
    print(todo)
-   idList = '60af9248e87283184d346aa9'
+   idList = ID_LIST_TODO
    r= requests.post('https://api.trello.com/1/cards',  params={'key': KEY, 'token': TOKEN, 'idList' : idList, 'name' : todo})
    response = r.json()
-   # print("The response is:" + response)
    return redirect(url_for('index'))  
 
 @app.route('/updateCard/<cardId>/<status>')
 def updateCard(cardId, status):
    if status == "ToDo":
-      idList = '60af9248e87283184d346aa9'
+      idList = ID_LIST_TODO
    elif status == "Doing":
-      idList = '60af9248e87283184d346aaa'
+      idList = ID_LIST_DOING
    else: 
-      idList = '60af9248e87283184d346aab'
+      idList = ID_LIST_DONE
    r= requests.put(f'https://api.trello.com/1/cards/{cardId}',  params={'key': KEY, 'token': TOKEN, 'idList': idList})
    response = r.json()
    return redirect(url_for('index')) 
 
-app.run()
