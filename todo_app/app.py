@@ -1,10 +1,11 @@
 import os
+from todo_app.item import Item
 from flask import Flask, redirect, url_for,  render_template
 from todo_app.data import session_items
 from todo_app.flask_config import Config
 from flask import request
 import requests
-from todo_app.view_model import ViewModelgit
+from todo_app.view_model import ViewModel
 
 app = Flask(__name__)
 app.config.from_object(Config)   
@@ -18,18 +19,15 @@ ID_LIST_DOING=os.getenv("ID_LIST_DOING")
 ID_LIST_DONE=os.getenv("ID_LIST_DONE")
 
 
-class Item:
-   def __init__(self, id, title, status):
-      self.title = title
-      self.status = status
-      self.id = id  
+
 
 @app.route('/index')
 def index():
-    list = getAllToDoFromTrello()
-    return  render_template('index.html', list=list)
+    list = get_all_todo_from_trello()
+    view_model = ViewModel(list)
+    return  render_template('index.html', view_model=view_model)
 
-def getAllToDoFromTrello():
+def get_all_todo_from_trello():
    list= []
    trelloList= requests.get(f'https://api.trello.com/1/boards/{BOARD_ID}/cards', params={'key': KEY, 'token': TOKEN}).json()
    for card in trelloList:

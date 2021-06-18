@@ -20,7 +20,7 @@
       <ul class="list-group mb-4">
         <table class="table"> <!--BootStrap-->
           <tr><th>Id</th><th>Title</th><th>Status</th></tr>
-          {% for item in view_model.itemsToDo %}
+          {% for item in view_model.todo_items %}
           <tr>
             <td> {{item.id}} </td> 
             <td> {{item.title}} </td>
@@ -34,7 +34,7 @@
         </table>
         <table class="table"> <!--BootStrap-->
           <tr><th>Id</th><th>Title</th><th>Status</th></tr>
-          {% for item in view_model.itemsDoing %}
+          {% for item in view_model.doing_items %}
           <tr>
             <td> {{item.id}} </td> 
             <td> {{item.title}} </td>
@@ -48,7 +48,7 @@
         </table>
         <table class="table"> <!--BootStrap-->
           <tr><th>Id</th><th>Title</th><th>Status</th></tr>
-          {% for item in view_model.itemsDone %}
+          {% for item in view_model.done_items %}
           <tr>
             <td> {{item.id}} </td> 
             <td> {{item.title}} </td>
