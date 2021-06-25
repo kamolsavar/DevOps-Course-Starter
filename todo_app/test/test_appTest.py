@@ -6,8 +6,6 @@ from todo_app.app import create_app
 import requests
 from unittest.mock import patch, Mock
 
-
-
 TEST_BOARD_ID=os.getenv("BOARD_ID")
 
 @pytest.fixture

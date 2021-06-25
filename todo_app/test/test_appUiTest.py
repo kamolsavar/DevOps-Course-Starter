@@ -8,31 +8,29 @@ from todo_app.app import create_app
 KEY=os.getenv("KEY")
 TOKEN=os.getenv("TOKEN")
 
-def create_trello_board():
-    name = "To_Do_Test" 
-    r=requests.post('https://api.trello.com/1/boards', params={'key': KEY, 'token': TOKEN, 'name' : {name}})
-
-def delete_trello_board(self, board_id):
-    self.board_id= board_id
-    r=requests.delete('https://api.trello.com/1/boards/{board_id}', params={'key': KEY, 'token': TOKEN})
-
 @pytest.fixture(scope='module')
 def app_with_temp_board():
- # Create the new board & update the board id
+    board_id = create_trello_board()
+    os.environ["BOARD_ID"] = board_id
+    os.environ["ID_LIST_TODO"] = "60d5eb000d11e46a91a68424"
+    os.environ["ID_LIST_DOING"] = "60d5eb000d11e46a91a68425"
+    os.environ["ID_LIST_DONE"] = "60d5eb000d11e46a91a68424"
 
-# environment variable
- board_id = create_trello_board()
- os.environ['TRELLO_BOARD_ID'] = board_id
- # construct the new application
- application = create_app()
- # start the app in its own thread.
- thread = Thread(target=lambda:application.run(use_reloader=False))
- thread.daemon = True
- thread.start()
- yield application
- # Tear Down
- thread.join(1)
-#  delete_trello_board(board_id)
+    application = create_app()
+    thread = Thread(target=lambda:application.run(use_reloader=False))
+    thread.daemon = True
+    thread.start()
+    yield application
+    delete_trello_board(board_id)
+    thread.join(1)  
+
+def create_trello_board():
+    name = "To_Do_Test" 
+    response=requests.post('https://api.trello.com/1/boards', params={'key': KEY, 'token': TOKEN, 'name' : name})
+    return response.json()["id"]
+
+def delete_trello_board(board_id):
+    r=requests.delete(f'https://api.trello.com/1/boards/{board_id}', params={'key': KEY, 'token': TOKEN})
 
 @pytest.fixture(scope="module")
 def driver():
@@ -41,4 +39,4 @@ def driver():
 
 def test_task_journey(driver, app_with_temp_board):
  driver.get('http://localhost:5000/')
- assert driver.title == 'To-Do App' 
+ assert driver.title == 'To-Do_Test' 
