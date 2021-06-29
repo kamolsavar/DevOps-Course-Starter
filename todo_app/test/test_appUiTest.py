@@ -12,9 +12,9 @@ TOKEN=os.getenv("TOKEN")
 def app_with_temp_board():
     board_id = create_trello_board()
     os.environ["BOARD_ID"] = board_id
-    os.environ["ID_LIST_TODO"] = "60d5eb000d11e46a91a68424"
-    os.environ["ID_LIST_DOING"] = "60d5eb000d11e46a91a68425"
-    os.environ["ID_LIST_DONE"] = "60d5eb000d11e46a91a68424"
+    os.environ["ID_LIST_TODO"] = ""
+    os.environ["ID_LIST_DOING"] = ""
+    os.environ["ID_LIST_DONE"] = ""
 
     application = create_app()
     thread = Thread(target=lambda:application.run(use_reloader=False))
