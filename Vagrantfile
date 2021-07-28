@@ -23,8 +23,8 @@ Vagrant.configure("2") do |config|
     source ~/.profile
     CFLAGS=-I/usr/include/openssl \
     LDFLAGS=-L/usr/lib64 \
-    pyenv install -v 3.5.1
-    pyenv global 3.5.1
+    pyenv install -v 3.9.5
+    pyenv global 3.9.5
     curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
   SHELL
   
@@ -35,8 +35,7 @@ Vagrant.configure("2") do |config|
     # # Install dependencies and launch
     cd /vagrant 
     poetry install
-    # poetry run flask run
-    nohup poetry run flask run --host 0.0.0.0 > logs.txt 2>&1 &
+    poetry run flask run --host 0.0.0.0
     "}
   end
 end
