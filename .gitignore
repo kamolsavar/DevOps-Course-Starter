@@ -122,3 +122,6 @@ env/
 
 # vagrant
 .vagrant
+
+# log
+logs.txt
