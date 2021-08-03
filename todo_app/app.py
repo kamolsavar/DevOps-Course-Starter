@@ -19,7 +19,7 @@ def create_app():
    ID_LIST_DOING=os.getenv("ID_LIST_DOING")
    ID_LIST_DONE=os.getenv("ID_LIST_DONE")
 
-   @app.route('/index')
+   @app.route('/')
    def index():
       list = get_all_todo_from_trello()
       view_model = ViewModel(list)

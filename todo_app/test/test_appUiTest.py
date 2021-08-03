@@ -4,12 +4,16 @@ import pytest
 import requests
 from selenium import webdriver
 from todo_app.app import create_app
-
-KEY=os.getenv("KEY")
-TOKEN=os.getenv("TOKEN")
+from dotenv import find_dotenv, load_dotenv
 
 @pytest.fixture(scope='module')
 def app_with_temp_board():
+    file_path = find_dotenv('.env')
+    load_dotenv(file_path, override=True)
+    global KEY
+    global TOKEN
+    KEY=os.getenv("KEY")
+    TOKEN=os.getenv("TOKEN")
     board_id = create_trello_board()
     os.environ["BOARD_ID"] = board_id
     os.environ["ID_LIST_TODO"] = ""

@@ -21,7 +21,7 @@ def client():
 def test_index_page(mock_get_requests, client):
  # Replace call to requests.get(url) with our own function
  mock_get_requests.side_effect = mock_get_lists
- response = client.get('/index')
+ response = client.get('/')
  assert response.status_code ==200
  assert "Swimming" in response.data.decode()
 
