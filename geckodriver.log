@@ -1,1 +1,97 @@
 1624633224198	geckodriver	INFO	Listening on 127.0.0.1:54777
+1628006864086	geckodriver	INFO	Listening on 127.0.0.1:58442
+1628007062444	geckodriver	INFO	Listening on 127.0.0.1:60074
+1628007798151	geckodriver	INFO	Listening on 127.0.0.1:57077
+1628008647648	geckodriver	INFO	Listening on 127.0.0.1:63955
+1628009493372	geckodriver	INFO	Listening on 127.0.0.1:53297
+1628071871650	geckodriver	INFO	Listening on 127.0.0.1:62111
+1628072055774	geckodriver	INFO	Listening on 127.0.0.1:55339
+1628072058857	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\kamol\\AppData\\Local\\Temp\\rust_mozprofileBqUrpO"
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+1628072059284	Marionette	INFO	Marionette enabled
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\kamol\\AppData\\Local\\Temp\\rust_mozprofileBqUrpO\\search.json.mozlz4", (void 0)))
+1628072061989	Marionette	INFO	Listening on port 55347
+1628072062108	Marionette	WARN	TLS certificate errors will be ignored for this session
+1628072065347	Marionette	INFO	Stopped listening on port 55347
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1628072104725	geckodriver	INFO	Listening on 127.0.0.1:53504
+1628072107773	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\kamol\\AppData\\Local\\Temp\\rust_mozprofileDc3Jvo"
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+1628072108182	Marionette	INFO	Marionette enabled
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\kamol\\AppData\\Local\\Temp\\rust_mozprofileDc3Jvo\\search.json.mozlz4", (void 0)))
+1628072110905	Marionette	INFO	Listening on port 53512
+1628072111019	Marionette	WARN	TLS certificate errors will be ignored for this session
+1628072113998	Marionette	INFO	Stopped listening on port 53512
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1628072405175	geckodriver	INFO	Listening on 127.0.0.1:53591
+1628072408227	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\kamol\\AppData\\Local\\Temp\\rust_mozprofilev75bnH"
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+1628072408625	Marionette	INFO	Marionette enabled
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\kamol\\AppData\\Local\\Temp\\rust_mozprofilev75bnH\\search.json.mozlz4", (void 0)))
+1628072411277	Marionette	INFO	Listening on port 53599
+1628072411437	Marionette	WARN	TLS certificate errors will be ignored for this session
+1628072414156	Marionette	INFO	Stopped listening on port 53599
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1628072450478	geckodriver	INFO	Listening on 127.0.0.1:61177
+1628072453558	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\kamol\\AppData\\Local\\Temp\\rust_mozprofileULsROl"
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+1628072453979	Marionette	INFO	Marionette enabled
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\kamol\\AppData\\Local\\Temp\\rust_mozprofileULsROl\\search.json.mozlz4", (void 0)))
+1628072456612	Marionette	INFO	Listening on port 61186
+1628072456762	Marionette	WARN	TLS certificate errors will be ignored for this session
+1628072459696	Marionette	INFO	Stopped listening on port 61186
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1628072485636	geckodriver	INFO	Listening on 127.0.0.1:61246
+1628072488711	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\kamol\\AppData\\Local\\Temp\\rust_mozprofile8NFIfk"
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+1628072489089	Marionette	INFO	Marionette enabled
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\kamol\\AppData\\Local\\Temp\\rust_mozprofile8NFIfk\\search.json.mozlz4", (void 0)))
+1628072491816	Marionette	INFO	Listening on port 61254
+1628072491927	Marionette	WARN	TLS certificate errors will be ignored for this session
+1628072494924	Marionette	INFO	Stopped listening on port 61254
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1628072514179	geckodriver	INFO	Listening on 127.0.0.1:61317
+1628072517296	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\kamol\\AppData\\Local\\Temp\\rust_mozprofileSLlRfC"
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+1628072517674	Marionette	INFO	Marionette enabled
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+[GFX1]: Potential driver version mismatch ignored due to missing DLLs igd10umd64 v= and igd10iumd64 v=
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\kamol\\AppData\\Local\\Temp\\rust_mozprofileSLlRfC\\search.json.mozlz4", (void 0)))
+1628072520191	Marionette	INFO	Listening on port 61326
+1628072520490	Marionette	WARN	TLS certificate errors will be ignored for this session
+1628072523283	Marionette	INFO	Stopped listening on port 61326
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+

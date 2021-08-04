@@ -125,3 +125,6 @@ env/
 
 # log
 logs.txt
+geckodriver.log
+
+.vscode/settings.json
