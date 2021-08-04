@@ -120,4 +120,11 @@ env/
 .env
 .vscode/
 
+# vagrant
+.vagrant
+
+# log
+logs.txt
 geckodriver.log
+
+.vscode/settings.json
