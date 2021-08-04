@@ -119,3 +119,5 @@ env/
 ### Configuration files ###
 .env
 .vscode/
+
+geckodriver.log

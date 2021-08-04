@@ -11,7 +11,6 @@
         <label for="title">Enter your title: </label>
         <p><input type="text" name="nm"></p>
         <p><input type = "submit" value = "submit" /></p>
-        <label for="title">Update your card: </label>
     </form> 
     
 
@@ -21,15 +20,43 @@
       <ul class="list-group mb-4">
         <table class="table"> <!--BootStrap-->
           <tr><th>Id</th><th>Title</th><th>Status</th></tr>
-          {% for item in list %}
+          {% for item in view_model.todo_items %}
           <tr>
             <td> {{item.id}} </td> 
             <td> {{item.title}} </td>
-            <td> {{item.status}} 
-            <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/ToDo';" value="ToDo"/>
-            <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/Doing';" value="Doing"/> 
-            <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/Done';" value="Done"/>
-            </td>   
+            <td> {{item.status}}
+              <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/ToDo';" value="ToDo"/>
+              <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/Doing';" value="Doing"/> 
+              <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/Done';" value="Done"/> 
+            </td>  
+          </tr>
+          {% endfor %}  
+        </table>
+        <table class="table"> <!--BootStrap-->
+          <tr><th>Id</th><th>Title</th><th>Status</th></tr>
+          {% for item in view_model.doing_items %}
+          <tr>
+            <td> {{item.id}} </td> 
+            <td> {{item.title}} </td>
+            <td> {{item.status}}
+              <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/ToDo';" value="ToDo"/>
+              <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/Doing';" value="Doing"/> 
+              <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/Done';" value="Done"/> 
+            </td> 
+          </tr>
+          {% endfor %}  
+        </table>
+        <table class="table"> <!--BootStrap-->
+          <tr><th>Id</th><th>Title</th><th>Status</th></tr>
+          {% for item in view_model.done_items %}
+          <tr>
+            <td> {{item.id}} </td> 
+            <td> {{item.title}} </td>
+            <td> {{item.status}}
+              <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/ToDo';" value="ToDo"/>
+              <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/Doing';" value="Doing"/> 
+              <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/Done';" value="Done"/> 
+            </td>    
           </tr>
           {% endfor %}  
         </table>
