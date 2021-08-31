@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+
+    todo_app:
+        image: todo_app:latest
+        build: 
+            context: .
+            dockerfile: Dockerfile
+            target: production
+        volumes:
+            - type: bind
+              source: todo_app
+              target: /DEVOPS-COURSE-STARTER/todo_app
+        env_file:
+            - .env               
+        ports:
+            - "5000:5000"
+     
