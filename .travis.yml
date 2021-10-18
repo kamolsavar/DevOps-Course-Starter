@@ -1,5 +1,5 @@
 script:
 - docker build --tag travis_todo --target test .
 - docker run travis_todo todo_app/test/test_unit.py
-
 - docker run --env-file .env.test travis_todo todo_app/test/test_appTest.py
+- docker run travis_todo todo_app/test/test_appUiTest.py

@@ -38,7 +38,7 @@ def delete_trello_board(board_id):
 
 @pytest.fixture(scope="module")
 def driver():
- with webdriver.Firefox() as driver:
+ with webdriver.Chrome() as driver:
     yield driver
 
 def test_task_journey(driver, app_with_temp_board):
