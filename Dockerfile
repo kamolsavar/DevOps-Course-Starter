@@ -28,6 +28,7 @@ RUN curl -sSL https://dl.google.com/linux/direct/google-chromestable_current_amd
  apt-get install ./chrome.deb -y &&\
  rm ./chrome.deb
 # Install Chromium WebDriver
+# firefox driver has been deleted
 RUN LATEST=`curl -sSL https://chromedriver.storage.googleapis.com/LATEST_RELEASE` &&\
  echo "Installing chromium webdriver version ${LATEST}" &&\
  curl -sSL https://chromedriver.storage.googleapis.com/${LATEST}/chromedriver_linux64.zip -o chromedriver_linux64.zip &&\
