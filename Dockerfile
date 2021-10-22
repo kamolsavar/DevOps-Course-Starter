@@ -29,9 +29,11 @@ RUN apt-get update && apt-get install ./chrome.deb -y
 RUN rm ./chrome.deb
 # Install Chromium WebDriver
 # firefox driver has been deleted
-RUN LATEST=`curl -sSL https://chromedriver.storage.googleapis.com/LATEST_RELEASE`
-RUN echo "Installing chromium webdriver version ${LATEST}"
-RUN curl -sSL https://chromedriver.storage.googleapis.com/${LATEST}/chromedriver_linux64.zip -o chromedriver_linux64.zip 
-RUN apt-get install unzip -y && unzip ./chromedriver_linux64.zip
+RUN LATEST=`curl -sSL https://chromedriver.storage.googleapis.com/LATEST_RELEASE` &&\
+ echo "Installing chromium webdriver version ${LATEST}" &&\
+ curl -sSL https://chromedriver.storage.googleapis.com/${LATEST}/chromedriver_linux64.zip -o chromedriver_linux64.zip &&\
+ apt-get install unzip -y &&\
+ unzip ./chromedriver_linux64.zip
+
 
 
