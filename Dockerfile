@@ -24,7 +24,7 @@ FROM base as test
 ENTRYPOINT ["poetry", "run", "pytest"]
 
 # Install Chrome
-RUN curl -sSL https://dl.google.com/linux/direct/google-chromestable_current_amd64.deb -o chrome.deb &&\
+RUN curl -sSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o chrome.deb &&\
  apt-get install ./chrome.deb -y &&\
  rm ./chrome.deb
 # Install Chromium WebDriver
