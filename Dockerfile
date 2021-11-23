@@ -20,5 +20,20 @@ ENTRYPOINT poetry run flask run --host=0.0.0.0
 FROM base as production
 ENTRYPOINT poetry run gunicorn  --bind=0.0.0.0:5000 "todo_app.app:create_app()"
 
+FROM base as test
+ENTRYPOINT ["poetry", "run", "pytest"]
+
+# Install Chrome
+RUN curl -sSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o chrome.deb
+RUN apt-get update && apt-get install ./chrome.deb -y
+RUN rm ./chrome.deb
+# Install Chromium WebDriver
+# firefox driver has been deleted
+RUN LATEST=`curl -sSL https://chromedriver.storage.googleapis.com/LATEST_RELEASE` &&\
+ echo "Installing chromium webdriver version ${LATEST}" &&\
+ curl -sSL https://chromedriver.storage.googleapis.com/${LATEST}/chromedriver_linux64.zip -o chromedriver_linux64.zip &&\
+ apt-get install unzip -y &&\
+ unzip ./chromedriver_linux64.zip
+
 
 

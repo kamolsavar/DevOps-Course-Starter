@@ -62,3 +62,17 @@ You should see output similar to the following:
  * Debugger PIN: 226-556-590
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
+
+
+For project :7
+ *For running the git action create todo.yml file with 
+    name: To Do app CI & CD
+    on: [push, pull_request]
+    jobs:
+    And so on.
+
+    Also you have create secrets in github to run docker image
+    KEY:
+    TOKEN: 
+
+    To check the test run clik the action tab and clik on the commits
