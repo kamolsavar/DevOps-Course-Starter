@@ -1,11 +1,12 @@
 import os
+import certifi
 from todo_app.item import Item
 from flask import Flask, redirect, url_for,  render_template
 from todo_app.data import session_items
 from todo_app.flask_config import Config
 from flask import request
 import requests
-from todo_app.view_model import ViewModel
+from todo_app.view_model import ViewModel    
 
 def create_app():
    app = Flask(__name__)
