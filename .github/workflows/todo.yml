@@ -3,6 +3,9 @@ on: [push, pull_request]
 
 jobs:
 
+  deployingtoheroku:
+    name: heroku
+    runs-on: ubuntu-latest
     steps:
     - run: docker login  --username kamolsavar --password ${{secrets.password}}
     - run: docker build --target production --tag kamolsavar/heroku:latest .

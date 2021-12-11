@@ -8,7 +8,9 @@ WORKDIR /DEVOPS-COURSE-STARTER
 
 # Install Dependencies
 COPY ./pyproject.toml .
-RUN poetry install
+# gunicorn has not be uploaded in heroku
+RUN poetry config virtualenvs.create false --local && poetry install
+
 
 # Copying over files
 COPY todo_app ./todo_app/
