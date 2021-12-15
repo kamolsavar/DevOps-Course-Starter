@@ -1,5 +1,6 @@
 import os
 import certifi
+import pymongo
 from todo_app.item import Item
 from flask import Flask, redirect, url_for,  render_template
 from todo_app.data import session_items
@@ -19,20 +20,22 @@ def create_app():
    ID_LIST_TODO=os.getenv("ID_LIST_TODO")
    ID_LIST_DOING=os.getenv("ID_LIST_DOING")
    ID_LIST_DONE=os.getenv("ID_LIST_DONE")
+   client = pymongo.MongoClient("mongodb+srv://kamolsavar:L0TlyZiAUESGE4Va@cluster0kamolsaha.qy5yo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", tlsCAFile=certifi.where())
+   db = client['test-database'] 
+   collection = db.test_collection
+
+
 
    @app.route('/')
    def index():
-      list = get_all_todo_from_trello()
-      view_model = ViewModel(list)
+      view_model = ViewModel([])
       return  render_template('index.html', view_model=view_model)
 
    @app.route('/addNewTitle',methods = ['POST'])
    def addTitle():
       todo = request.form.get('nm')
       print(todo)
-      idList = ID_LIST_TODO
-      r= requests.post('https://api.trello.com/1/cards',  params={'key': KEY, 'token': TOKEN, 'idList' : idList, 'name' : todo})
-      response = r.json()
+      collection.insert_one({"Name": todo, "Status": "To Do" })
       return redirect(url_for('index'))  
 
    @app.route('/updateCard/<cardId>/<status>')
