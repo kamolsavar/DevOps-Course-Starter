@@ -2,12 +2,26 @@ name: To Do app CI & CD
 on: [push, pull_request]
 
 jobs:
+
+  deployingtoheroku:
+    name: heroku
+    runs-on: ubuntu-latest
+    steps:
+    - run: docker login  --username kamolsavar --password ${{secrets.password}}
+    - run: docker build --target production --tag kamolsavar/heroku:latest .
+    - run: docker push kamolsavar/heroku:latest
+    - run: docker tag  kamolsavar/heroku:v1 registry.heroku.com/todo-app-london/web
+    - run: docker push registry.heroku.com/todo-app-london/web
+    - run: heroku container:release web -a todo-app-london 
+
+
   test:
     name: Test
     runs-on: ubuntu-latest
     env:
       TOKEN: ${{ secrets.trelloToken}}
       KEY: ${{ secrets.trelloKey}}
+      SECRET_KEY: ${{ secrets.trelloSecretKey}}
     steps:
     - uses: actions/checkout@v2
     - name: Build test image
@@ -18,4 +32,4 @@ jobs:
       run: docker run --env-file .env.test travis_todo todo_app/test/test_appTest.py
     - name: Run end-to-end test
       # You'll need to adjust this to also pass in the relevant environment variables
-      run: docker run --env TOKEN --env KEY travis_todo todo_app/test/test_appUiTest.py
+      run: docker run --env TOKEN --env KEY --env  SECRET_KEY travis_todo todo_app/test/test_appUiTest.py
