@@ -6,6 +6,10 @@ jobs:
   deployingtoheroku:
     name: heroku
     runs-on: ubuntu-latest
+    env:
+      TOKEN: ${{ secrets.trelloToken}}
+      KEY: ${{ secrets.trelloKey}}
+      SECRET_KEY: ${{ secrets.trelloSecretKey}}
     steps:
     - uses: actions/checkout@v2
     - run: docker login  --username kamolsavar --password ${{secrets.password}}
