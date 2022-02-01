@@ -7,6 +7,7 @@ jobs:
     name: heroku
     runs-on: ubuntu-latest
     env:
+      HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
       TOKEN: ${{ secrets.trelloToken}}
       KEY: ${{ secrets.trelloKey}}
       SECRET_KEY: ${{ secrets.trelloSecretKey}}
@@ -16,6 +17,7 @@ jobs:
     - run: docker build --target production --tag kamolsavar/heroku:latest .
     - run: docker push kamolsavar/heroku:latest
     - run: docker tag  kamolsavar/heroku:latest registry.heroku.com/todo-app-london/web
+    - run: heroku container:login
     - run: docker push registry.heroku.com/todo-app-london/web
     - run: heroku container:release web -a todo-app-london 
 
