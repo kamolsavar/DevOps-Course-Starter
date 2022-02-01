@@ -25,17 +25,17 @@ jobs:
   deployingtoheroku:
     name: heroku
     runs-on: ubuntu-latest
-    env:
-      HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
-      TOKEN: ${{ secrets.trelloToken}}
-      KEY: ${{ secrets.trelloKey}}
-      SECRET_KEY: ${{ secrets.trelloSecretKey}}
     needs: [test]
     if:
       contains('
         refs/heads/dev
         refs/heads/staging
         refs/heads/production', github.ref)  
+    env:
+      HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
+      TOKEN: ${{ secrets.trelloToken}}
+      KEY: ${{ secrets.trelloKey}}
+      SECRET_KEY: ${{ secrets.trelloSecretKey}}
     steps:
     - uses: actions/checkout@v2
     - run: docker login  --username kamolsavar --password ${{secrets.password}}
