@@ -25,7 +25,6 @@ jobs:
   deployingtoheroku:
     name: heroku
     runs-on: ubuntu-latest
-    # Only deploy when the test pass
     needs: [test]
     # if: contains('refs/heads/production', github.ref)  
     env:
