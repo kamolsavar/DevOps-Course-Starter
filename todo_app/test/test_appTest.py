@@ -25,7 +25,7 @@ def test_index_page(mock_get_requests, client):
  assert response.status_code ==200
  assert "Swimming" in response.data.decode()
 
-sample_trello_card_response = [{"id":"card", "name":"Swimming", "idList":"1234todolist"}] 
+sample_trello_card_response = [{"id":"card", "name":"Swimmin", "idList":"1234todolist"}] 
 # (card["id"], card["name"], status))
 
 def mock_get_lists(url, params):
