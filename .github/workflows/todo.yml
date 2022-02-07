@@ -2,6 +2,7 @@ name: To Do app CI & CD
 on: [push, pull_request]
 
 jobs:
+
   test:
     name: Test
     runs-on: ubuntu-latest
@@ -20,3 +21,24 @@ jobs:
     - name: Run end-to-end test
       # You'll need to adjust this to also pass in the relevant environment variables
       run: docker run --env TOKEN --env KEY --env  SECRET_KEY travis_todo todo_app/test/test_appUiTest.py
+
+  deployingtoheroku:
+    name: heroku
+    runs-on: ubuntu-latest
+    # Only deploy when the test pass
+    needs: [test]
+    # if: contains('refs/heads/production', github.ref)  
+    env:
+      HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
+      TOKEN: ${{ secrets.trelloToken}}
+      KEY: ${{ secrets.trelloKey}}
+      SECRET_KEY: ${{ secrets.trelloSecretKey}}
+    steps:
+    - uses: actions/checkout@v2
+    - run: docker login  --username kamolsavar --password ${{secrets.password}}
+    - run: docker build --target production --tag kamolsavar/heroku:latest .
+    - run: docker push kamolsavar/heroku:latest
+    - run: docker tag  kamolsavar/heroku:latest registry.heroku.com/todo-app-london/web
+    - run: heroku container:login
+    - run: docker push registry.heroku.com/todo-app-london/web
+    - run: heroku container:release web -a todo-app-london 
