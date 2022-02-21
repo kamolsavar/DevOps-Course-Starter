@@ -1,5 +1,6 @@
 import os
 import certifi
+from bson import ObjectId
 import pymongo
 from todo_app.item import Item
 from flask import Flask, redirect, url_for,  render_template
@@ -20,7 +21,8 @@ def create_app():
    ID_LIST_TODO=os.getenv("ID_LIST_TODO")
    ID_LIST_DOING=os.getenv("ID_LIST_DOING")
    ID_LIST_DONE=os.getenv("ID_LIST_DONE")
-   client = pymongo.MongoClient("mongodb+srv://kamolsavar:L0TlyZiAUESGE4Va@cluster0kamolsaha.qy5yo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", tlsCAFile=certifi.where())
+
+   client = pymongo.MongoClient(os.getenv("MONGO_DB_CONNECTION"), tlsCAFile=certifi.where())
    db = client['test-database'] 
    collection = db.test_collection
 
@@ -28,8 +30,18 @@ def create_app():
 
    @app.route('/')
    def index():
-      view_model = ViewModel([])
+      json_record_for_todos = collection.find()
+      list= []
+      for card in json_record_for_todos:
+         status = card ["Status"]
+         print (f"The Status: {status}")
+         print (f"The cardId :{card['_id']}")
+         list.append(Item(card["_id"], card["Name"], status))
+      print (f"The record is {json_record_for_todos}" )
+      view_model = ViewModel(list)
       return  render_template('index.html', view_model=view_model)
+
+      
 
    @app.route('/addNewTitle',methods = ['POST'])
    def addTitle():
@@ -40,14 +52,8 @@ def create_app():
 
    @app.route('/updateCard/<cardId>/<status>')
    def updateCard(cardId, status):
-      if status == "ToDo":
-         idList = ID_LIST_TODO
-      elif status == "Doing":
-         idList = ID_LIST_DOING
-      else: 
-         idList = ID_LIST_DONE
-      r= requests.put(f'https://api.trello.com/1/cards/{cardId}',  params={'key': KEY, 'token': TOKEN, 'idList': idList})
-      response = r.json()
+      collection.update_one({"_id" : ObjectId(cardId)}, {"$set" : {"Status" : status}})
+      print (f"The status :{cardId}")
       return redirect(url_for('index')) 
       
    def get_all_todo_from_trello():
