@@ -6,7 +6,7 @@ from todo_app.view_model import ViewModel
 
 
 def test_get_ToDo_Trello():
-    viewModel = ViewModel(items=[Item( "60afa040b07e9a4371098530","title", "ToDo")])
+    viewModel = ViewModel(items=[Item( "60afa040b07e9a4371098530","title", "To Do")])
     list= viewModel.todo_items
     assert len(list)==1
 
