@@ -21,11 +21,12 @@ def client():
 
 
 def test_index(client):       
-  mock_mongo_db_connection = pymongo.MongoClient(os.getenv("MONGO_DB_FAKE_CONNECTION"))
+  mock_mongo_db_connection = pymongo.MongoClient(os.getenv("MONGO_DB_CONNECTION"))
   db = mock_mongo_db_connection[os.getenv('DATABASE_NAME')] 
   collection = db.test_collection
   mock_record = collection.insert_one({"Name": "Boxing", "Status": "To Do" })
   response=client.get('/')
   assert response.status_code==200
+  assert 'Boxing' in response.data.decode()
 
   
