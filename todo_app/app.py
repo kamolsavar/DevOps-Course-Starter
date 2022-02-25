@@ -23,7 +23,7 @@ def create_app():
    ID_LIST_DONE=os.getenv("ID_LIST_DONE")
 
    client = pymongo.MongoClient(os.getenv("MONGO_DB_CONNECTION"), tlsCAFile=certifi.where())
-   db = client['test-database'] 
+   db = client[os.getenv("DATABASE_NAME")] 
    collection = db.test_collection
 
 
