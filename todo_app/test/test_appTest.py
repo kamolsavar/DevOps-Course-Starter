@@ -1,5 +1,6 @@
 import pytest
 import os
+import certifi
 from flask import Flask
 from dotenv import find_dotenv, load_dotenv
 from todo_app.app import create_app
@@ -21,7 +22,7 @@ def client():
 
 
 def test_index(client):       
-  mock_mongo_db_connection = pymongo.MongoClient(os.getenv("MONGO_DB_CONNECTION"))
+  mock_mongo_db_connection = pymongo.MongoClient(os.getenv("MONGO_DB_CONNECTION"),tlsCAFile=certifi.where())
   db = mock_mongo_db_connection[os.getenv('DATABASE_NAME')] 
   collection = db.test_collection
   mock_record = collection.insert_one({"Name": "Boxing", "Status": "To Do" })

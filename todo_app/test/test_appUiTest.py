@@ -1,6 +1,7 @@
 import os
 from threading import Thread
 import pytest
+import certifi
 import requests
 from selenium import webdriver
 from todo_app.app import create_app
@@ -17,7 +18,7 @@ def app_with_temp_board():
     thread.daemon = True
     thread.start()
     yield application
-    client = pymongo.MongoClient(os.getenv("MONGO_DB_CONNECTION"))
+    client = pymongo.MongoClient(os.getenv("MONGO_DB_CONNECTION"), tlsCAFile=certifi.where())
     thread.join(1) 
     client.drop_database("selinum_database")
      
