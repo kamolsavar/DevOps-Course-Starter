@@ -7,7 +7,6 @@ from todo_app.app import create_app
 import requests
 import mongomock
 import pymongo
-from markupsafe import soft_unicode
 from unittest.mock import patch, Mock
 
 
