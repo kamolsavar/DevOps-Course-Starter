@@ -2,7 +2,6 @@ import os
 from threading import Thread
 import pytest
 import certifi
-import requests
 from selenium import webdriver
 from todo_app.app import create_app
 from dotenv import find_dotenv, load_dotenv

@@ -12,20 +12,10 @@ from todo_app.view_model import ViewModel
 
 def create_app():
    app = Flask(__name__)
-   app.config.from_object(Config())   
-
-   KEY=os.getenv("KEY")
-   TOKEN=os.getenv("TOKEN")
-
-   BOARD_ID=os.getenv("BOARD_ID")
-   ID_LIST_TODO=os.getenv("ID_LIST_TODO")
-   ID_LIST_DOING=os.getenv("ID_LIST_DOING")
-   ID_LIST_DONE=os.getenv("ID_LIST_DONE")
-
+   app.config.from_object(Config()) 
    client = pymongo.MongoClient(os.getenv("MONGO_DB_CONNECTION"), tlsCAFile=certifi.where())
    db = client[os.getenv("DATABASE_NAME")] 
    collection = db.test_collection
-
 
 
    @app.route('/')
