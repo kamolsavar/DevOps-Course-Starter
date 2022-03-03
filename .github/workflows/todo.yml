@@ -7,8 +7,8 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     env:
-      MONGO_DB_CONNECTION: ${{ secrets.MONGO_DB_CONNECTION}}
-      DATABASE_NAME: ${{ secrets.DATABASE_NAME}}
+      MONGO_DB_CONNECTION: ${{secrets.MONGO_DB_CONNECTION}}
+      DATABASE_NAME: ${{secrets.DATABASE_NAME}}
     steps:
     - uses: actions/checkout@v2
     - name: Build test image
@@ -19,7 +19,7 @@ jobs:
       run: docker run --env-file .env.test travis_todo todo_app/test/test_appTest.py
     - name: Run end-to-end test
       # You'll need to adjust this to also pass in the relevant environment variables
-      run: docker run --env TOKEN --env KEY --env  SECRET_KEY travis_todo todo_app/test/test_appUiTest.py
+      run: docker run --env MONGO_DB_CONNECTION --env DATABASE_NAME travis_todo todo_app/test/test_appUiTest.py
 
   deployingtoheroku:
     name: heroku
