@@ -1,49 +1,49 @@
 import os
+import certifi
+from bson import ObjectId
+import pymongo
 from todo_app.item import Item
 from flask import Flask, redirect, url_for,  render_template
 from todo_app.data import session_items
 from todo_app.flask_config import Config
 from flask import request
 import requests
-from todo_app.view_model import ViewModel
+from todo_app.view_model import ViewModel    
 
 def create_app():
    app = Flask(__name__)
-   app.config.from_object(Config())   
+   app.config.from_object(Config()) 
+   client = pymongo.MongoClient(os.getenv("MONGO_DB_CONNECTION"), tlsCAFile=certifi.where())
+   db = client[os.getenv("DATABASE_NAME")] 
+   collection = db.test_collection
 
-   KEY=os.getenv("KEY")
-   TOKEN=os.getenv("TOKEN")
-
-   BOARD_ID=os.getenv("BOARD_ID")
-   ID_LIST_TODO=os.getenv("ID_LIST_TODO")
-   ID_LIST_DOING=os.getenv("ID_LIST_DOING")
-   ID_LIST_DONE=os.getenv("ID_LIST_DONE")
 
    @app.route('/')
    def index():
-      list = get_all_todo_from_trello()
+      json_record_for_todos = collection.find()
+      list= []
+      for card in json_record_for_todos:
+         status = card ["Status"]
+         print (f"The Status: {status}")
+         print (f"The cardId :{card['_id']}")
+         list.append(Item(card["_id"], card["Name"], status))
+      print (f"The record is {json_record_for_todos}" )
       view_model = ViewModel(list)
       return  render_template('index.html', view_model=view_model)
+
+      
 
    @app.route('/addNewTitle',methods = ['POST'])
    def addTitle():
       todo = request.form.get('nm')
       print(todo)
-      idList = ID_LIST_TODO
-      r= requests.post('https://api.trello.com/1/cards',  params={'key': KEY, 'token': TOKEN, 'idList' : idList, 'name' : todo})
-      response = r.json()
+      collection.insert_one({"Name": todo, "Status": "To Do" })
       return redirect(url_for('index'))  
 
    @app.route('/updateCard/<cardId>/<status>')
    def updateCard(cardId, status):
-      if status == "ToDo":
-         idList = ID_LIST_TODO
-      elif status == "Doing":
-         idList = ID_LIST_DOING
-      else: 
-         idList = ID_LIST_DONE
-      r= requests.put(f'https://api.trello.com/1/cards/{cardId}',  params={'key': KEY, 'token': TOKEN, 'idList': idList})
-      response = r.json()
+      collection.update_one({"_id" : ObjectId(cardId)}, {"$set" : {"Status" : status}})
+      print (f"The status :{cardId}")
       return redirect(url_for('index')) 
       
    def get_all_todo_from_trello():
