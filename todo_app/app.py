@@ -8,7 +8,9 @@ from todo_app.data import session_items
 from todo_app.flask_config import Config
 from flask import request
 import requests
-from todo_app.view_model import ViewModel    
+from todo_app.view_model import ViewModel 
+from flask_login import login_user, logout_user, LoginManager, login_required
+from oauthlib.oauth2 import WebApplicationClient    
 
 def create_app():
    app = Flask(__name__)
@@ -17,8 +19,28 @@ def create_app():
    db = client[os.getenv("DATABASE_NAME")] 
    collection = db.test_collection
 
+   login_manager = LoginManager()
+
+   @login_manager.unauthorized_handler
+   def unauthenticated():
+      return redirect('https://github.com/login/oauth/authorize?client_id=' + os.getenv("CLIENT_ID"))  
+   
+   @login_manager.user_loader
+   def load_user(user_id):
+      return None
+ 
+   login_manager.init_app(app)
+
+   @app.route('/login/callback')
+   def log_in_call_back():
+      response = requests.post('https://github.com/login/oauth/access_token', params={"client_id":os.getenv("CLIENT_ID"), "client_secret":os.getenv("CLIENT_SECRET"), "code": request.args.get("code")})
+      return response.text
+
+   def use_token_call_api():
+      requests.get('https://api.github.com/user',params={""})
 
    @app.route('/')
+   @login_required
    def index():
       json_record_for_todos = collection.find()
       list= []
