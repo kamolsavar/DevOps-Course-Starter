@@ -10,7 +10,7 @@ from todo_app.flask_config import Config
 from flask import request
 import requests
 from todo_app.view_model import ViewModel 
-from flask_login import login_user, logout_user, LoginManager, login_required, UserMixin
+from flask_login import current_user, login_user, logout_user, LoginManager, login_required, UserMixin
 from oauthlib.oauth2 import WebApplicationClient  
 from todo_app.user import  User
 
@@ -61,30 +61,22 @@ def create_app():
 
    @app.route('/addNewTitle',methods = ['POST'])
    def addTitle():
-      todo = request.form.get('nm')
-      print(todo)
-      collection.insert_one({"Name": todo, "Status": "To Do" })
-      return redirect(url_for('index'))  
+      if (current_user.role == "Writer"):
+         todo = request.form.get('nm')
+         print(todo)
+         collection.insert_one({"Name": todo, "Status": "To Do" })
+         return redirect(url_for('index'))
+      else:
+         return  "Permission denied", 401     
 
    @app.route('/updateCard/<cardId>/<status>')
    def updateCard(cardId, status):
-      collection.update_one({"_id" : ObjectId(cardId)}, {"$set" : {"Status" : status}})
-      print (f"The status :{cardId}")
-      return redirect(url_for('index')) 
-      
-   def get_all_todo_from_trello():
-      list= []
-      trelloList= requests.get(f'https://api.trello.com/1/boards/{BOARD_ID}/cards', params={'key': KEY, 'token': TOKEN}).json()
-      for card in trelloList:
-         if card ["idList"] == ID_LIST_TODO:
-            status = "ToDo"
-         elif card ["idList"]== ID_LIST_DOING:
-            status = 'Doing'   
-         else:
-            status = "Done"
-         # list.append({"status":status, "id":card["id"], "title":card["name"]})
-         list.append(Item(card["id"], card["name"], status))
-      return list  
+      if (current_user.role == "Writer"):
+         collection.update_one({"_id" : ObjectId(cardId)}, {"$set" : {"Status" : status}})
+         print (f"The status :{cardId}")
+         return redirect(url_for('index'))
+      else:
+         return  "Permission denied", 401      
    
    return app
 
