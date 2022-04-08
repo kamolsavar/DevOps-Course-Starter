@@ -6,12 +6,13 @@
     <h1 class="display-4">To-Do App</h1>
     <p class="lead">Just another to-do app.</p>
   </div>
-  
-    <form action="/addNewTitle" method="post">
-        <label for="title">Enter your title: </label>
+      {%if user_role =='Writer'%}
+      <form action="/addNewTitle" method="post">
+          <label for="title">Enter your title: </label>
         <p><input type="text" name="nm"></p>
         <p><input type = "submit" value = "submit" /></p>
     </form> 
+    {% endif %}
     
 
   <div class="row">
@@ -25,9 +26,11 @@
             <td> {{item.id}} </td> 
             <td> {{item.title}} </td>
             <td> {{item.status}}
+              {%if user_role =='Writer'%}
               <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/ToDo';" value="ToDo"/>
               <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/Doing';" value="Doing"/> 
               <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/Done';" value="Done"/> 
+              {% endif %} 
             </td>  
           </tr>
           {% endfor %}  
@@ -39,9 +42,11 @@
             <td> {{item.id}} </td> 
             <td> {{item.title}} </td>
             <td> {{item.status}}
+              {%if user_role =='Writer'%}
               <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/ToDo';" value="ToDo"/>
               <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/Doing';" value="Doing"/> 
-              <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/Done';" value="Done"/> 
+              <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/Done';" value="Done"/>
+              {% endif %} 
             </td> 
           </tr>
           {% endfor %}  
@@ -53,9 +58,11 @@
             <td> {{item.id}} </td> 
             <td> {{item.title}} </td>
             <td> {{item.status}}
+              {%if user_role =='Writer'%}
               <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/ToDo';" value="ToDo"/>
               <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/Doing';" value="Doing"/> 
               <input type="button" onclick="window.location.href='/updateCard/{{item.id}}/Done';" value="Done"/> 
+              {% endif %} 
             </td>    
           </tr>
           {% endfor %}  

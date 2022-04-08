@@ -57,7 +57,11 @@ def create_app():
          list.append(Item(card["_id"], card["Name"], status))
       print (f"The record is {json_record_for_todos}" )
       view_model = ViewModel(list)
-      return  render_template('index.html', view_model=view_model)
+      if app.config['LOGIN_DISABLED']:
+         user_role = "Writer"
+      else:
+          user_role = current_user.role
+      return  render_template('index.html', view_model=view_model, user_role = user_role)
 
    @app.route('/addNewTitle',methods = ['POST'])
    def addTitle():
