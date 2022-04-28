@@ -7,6 +7,7 @@ from todo_app.app import create_app
 from dotenv import find_dotenv, load_dotenv
 import pymongo
 
+os.environ['LOGIN_DISABLED'] = 'True'
 @pytest.fixture(scope='module')
 def app_with_temp_board():
     file_path = find_dotenv('.env')

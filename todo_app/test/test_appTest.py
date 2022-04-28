@@ -9,7 +9,6 @@ import mongomock
 import pymongo
 from unittest.mock import patch, Mock
 
-
 @pytest.fixture
 def client():
  # Use our test integration config instead of the 'real' version
