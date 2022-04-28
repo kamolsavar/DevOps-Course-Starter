@@ -32,17 +32,17 @@ $ cp .env.template .env  # (first time only)
 
 The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like development mode (which also enables features like hot reloading when you make a file change). 
 Find the value for the following keys:
-# api key and token for Trello
-KEY=
-TOKEN=
+Set the  .env file.
 
-# board id and listId
-BOARD_ID=
+CLIENT_ID
+CLIENT_SECRET 
 
-ID_LIST_TODO=
-ID_LIST_DOING=
-ID_LIST_DONE=
-and set them in .env file.
+set .env.test
+
+CLIENT_ID
+CLIENT_SECRET 
+
+
 
 ## Running the App
 
@@ -64,7 +64,7 @@ You should see output similar to the following:
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
 
 
-For project :7
+For project :10
  *For running the git action create todo.yml file with 
     name: To Do app CI & CD
     on: [push, pull_request]
@@ -72,7 +72,5 @@ For project :7
     And so on.
 
     Also you have create secrets in github to run docker image
-    KEY:
-    TOKEN: 
-
+   
     To check the test run clik the action tab and clik on the commits
