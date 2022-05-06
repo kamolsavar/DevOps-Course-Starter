@@ -34,13 +34,21 @@ The `.env` file is used by flask to set environment variables when running `flas
 Find the value for the following keys:
 Set the  .env file.
 
-CLIENT_ID
-CLIENT_SECRET 
+###Running the tod0-app in azure
+Step 1: push the image in Dokcker Hub
+Step 2: Create cosmo mongo db for the application and use the string in .env 
+Step 3: Create the app in azure 
+Step 4: Configure the secrets in Azure
+      CLIENT_ID: create clietn_id in git hub using new url : https://todo-app-kamol.azurewebsites.net/ from the azure app
+      CLIENT_SECRET : retrieve the secret as well 
+      MONGO_DB_CONNECTION=Value
+      DATABASE_NAME=Name
+
 
 set .env.test
 
-CLIENT_ID
-CLIENT_SECRET 
+CLIENT_ID: create clietn_id in git hub using new url : https://todo-app-kamol.azurewebsites.net/ from the azure app
+CLIENT_SECRET : retrieve the secret as well 
 
 
 
@@ -63,14 +71,3 @@ You should see output similar to the following:
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
 
-
-For project :10
- *For running the git action create todo.yml file with 
-    name: To Do app CI & CD
-    on: [push, pull_request]
-    jobs:
-    And so on.
-
-    Also you have create secrets in github to run docker image
-   
-    To check the test run clik the action tab and clik on the commits
