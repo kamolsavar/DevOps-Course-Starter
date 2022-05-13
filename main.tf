@@ -21,12 +21,15 @@ resource "azurerm_app_service_plan" "main" {
   resource_group_name = data.azurerm_resource_group.main.name
   kind                = "Linux"
   reserved            = true
+  
   sku {
     tier = "Basic"
     size = "B1"
-} }
+  } 
+}
+
 resource "azurerm_app_service" "main" {
-  name                = "todo-app-kamol"
+  name                = "todo-terraform-app-kamol"
   location            = data.azurerm_resource_group.main.location
   resource_group_name = data.azurerm_resource_group.main.name
   app_service_plan_id = azurerm_app_service_plan.main.id
