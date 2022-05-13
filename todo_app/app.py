@@ -1,7 +1,6 @@
 from email.headerregistry import ContentTypeHeader
 import os
 import certifi
-from bson import ObjectId
 import pymongo
 from todo_app.item import Item
 from flask import Flask, redirect, url_for,  render_template
@@ -11,8 +10,8 @@ from flask import request
 import requests
 from todo_app.view_model import ViewModel 
 from flask_login import current_user, login_user, logout_user, LoginManager, login_required, UserMixin
-from oauthlib.oauth2 import WebApplicationClient  
 from todo_app.user import  User
+from bson.objectid import ObjectId
 
 def create_app():
    app = Flask(__name__)

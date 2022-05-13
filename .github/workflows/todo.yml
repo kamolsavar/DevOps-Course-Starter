@@ -36,7 +36,4 @@ jobs:
     - run: docker login  --username kamolsavar --password ${{secrets.password}}
     - run: docker build --target production --tag kamolsavar/heroku:latest .
     - run: docker push kamolsavar/heroku:latest
-    - run: docker tag  kamolsavar/heroku:latest registry.heroku.com/todo-app-london/web
-    - run: heroku container:login
-    - run: docker push registry.heroku.com/todo-app-london/web
-    - run: heroku container:release web -a todo-app-london 
+    - run: curl -dH -X POST https://\$todo-app-kamol:${{secrets.AZURE_PORTAL_SECRET}}@todo-app-kamol.scm.azurewebsites.net/docker/hook

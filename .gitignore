@@ -1,4 +1,4 @@
-# Created by https://www.gitignore.io/api/flask
+ Created by https://www.gitignore.io/api/flask
 # Edit at https://www.gitignore.io/?templates=flask
 
 ### Flask ###
@@ -128,3 +128,4 @@ logs.txt
 geckodriver.log
 
 .vscode/settings.json
+
