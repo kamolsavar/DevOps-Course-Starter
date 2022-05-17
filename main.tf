@@ -41,13 +41,12 @@ resource "azurerm_app_service" "main" {
 
   app_settings = {
     "DOCKER_REGISTRY_SERVER_URL" = "https://index.docker.io"
-    "CLIENT_ID" = ""
-    "CLIENT_SECRET" =""
-    "DATABASE_NAME" = ""
-    "DOCKER_ENABLE_CI" = ""
-    "DOCKER_REGISTRY_SERVER_URL" = ""
+    "CLIENT_ID" = var.clientSecret
+    "CLIENT_SECRET" = var.clientSecret
+    "DATABASE_NAME" = var.databseName
+    "DOCKER_ENABLE_CI" = true
     "MONGO_DB_CONNECTION" = azurerm_cosmosdb_account.db.connection_strings[0]
-    "SECRET_KEY" = ""
+    "SECRET_KEY" = var.secretKey
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = false
   }
 
@@ -99,7 +98,7 @@ resource "azurerm_cosmosdb_account" "db" {
 }
 
 resource "azurerm_cosmosdb_mongo_database" "myfirstTerraformDb" {
-  name                = "tfex-cosmos-mongo-db"
+  name                = "kamol-terraform-cosmos-mongo-db"
   resource_group_name = azurerm_cosmosdb_account.db.resource_group_name
   account_name        = azurerm_cosmosdb_account.db.name
 }
