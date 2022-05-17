@@ -45,7 +45,7 @@ Step 4: Configure the secrets in Azure
       DATABASE_NAME=Name
 
 
-set .env.test
+## set .env.test
 
 CLIENT_ID: create clietn_id in git hub using new url : https://todo-app-kamol.azurewebsites.net/ from the azure app
 CLIENT_SECRET : retrieve the secret as well 

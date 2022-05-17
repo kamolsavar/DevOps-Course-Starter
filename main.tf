@@ -36,35 +36,25 @@ resource "azurerm_app_service" "main" {
 
   site_config {
     app_command_line = ""
-    linux_fx_version = "DOCKER|appsvcsample/python-helloworld:latest"
+    linux_fx_version = "DOCKER|kamolsavar/todo-terraform-app:latest"
   }
 
   app_settings = {
     "DOCKER_REGISTRY_SERVER_URL" = "https://index.docker.io"
-    "CLIENT_ID" = 
-    "CLIENT_SECRET" =
-    "DATABASE_NAME" = 
-    "DOCKER_ENABLE_CI" = 
-    "DOCKER_REGISTRY_SERVER_URL" =
-    "MONGO_DB_CONNECTION" = azurerm_cosmosdb_account.main.connection_strings[0]
-    "SECRET_KEY" = 
+    "CLIENT_ID" = ""
+    "CLIENT_SECRET" =""
+    "DATABASE_NAME" = ""
+    "DOCKER_ENABLE_CI" = ""
+    "DOCKER_REGISTRY_SERVER_URL" = ""
+    "MONGO_DB_CONNECTION" = azurerm_cosmosdb_account.db.connection_strings[0]
+    "SECRET_KEY" = ""
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = false
   }
 
 }
 
-resource "azurerm_resource_group" "example" {
-  name     = var.resource_group_name
-  location = var.resource_group_location
-}
-
-resource "random_integer" "ri" {
-  min = 10000
-  max = 99999
-}
-
 resource "azurerm_cosmosdb_account" "db" {
-  name                = "tfex-cosmos-db-${random_integer.ri.result}"
+  name                = "tfex-cosmos-db-kamol-terraform-db"
   location            = data.azurerm_resource_group.main.location
   resource_group_name = data.azurerm_resource_group.main.name
   offer_type          = "Standard"
@@ -100,11 +90,6 @@ resource "azurerm_cosmosdb_account" "db" {
     consistency_level       = "BoundedStaleness"
     max_interval_in_seconds = 300
     max_staleness_prefix    = 100000
-  }
-
-  geo_location {
-    location          = var.failover_location
-    failover_priority = 1
   }
 
   geo_location {
