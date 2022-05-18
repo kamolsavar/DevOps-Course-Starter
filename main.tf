@@ -41,7 +41,7 @@ resource "azurerm_app_service" "main" {
 
   app_settings = {
     "DOCKER_REGISTRY_SERVER_URL" = "https://index.docker.io"
-    "CLIENT_ID" = var.clientSecret
+    "CLIENT_ID" = var.clientId
     "CLIENT_SECRET" = var.clientSecret
     "DATABASE_NAME" = var.databseName
     "DOCKER_ENABLE_CI" = true
