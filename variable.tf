@@ -10,12 +10,12 @@ variable "location" {
 
 variable "clientId" {
   description = "Application Client Id"
-  default     = "3f595d12ffb8865be659"
+  sensitive = true
 }
 
 variable "clientSecret" {
   description = "The Client secret for the Terraform app"
-  default     = "c603a5441e90d11ac3490e055d04929ceca0fa41"
+  sensitive = true
 }
 
 variable "databseName" {
@@ -27,4 +27,3 @@ variable "secretKey" {
   description = "The secret key"
   default     = "secret-key"
 }
-

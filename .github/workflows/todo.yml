@@ -37,3 +37,4 @@ jobs:
     - run: docker build --target production --tag kamolsavar/heroku:latest .
     - run: docker push kamolsavar/heroku:latest
     - run: curl -dH -X POST https://\$todo-app-kamol:${{secrets.AZURE_PORTAL_SECRET}}@todo-app-kamol.scm.azurewebsites.net/docker/hook
+    - run: terraform init
