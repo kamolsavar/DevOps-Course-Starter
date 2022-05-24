@@ -10,7 +10,6 @@ terraform {
         storage_account_name = "kamol2022amex"
         container_name       = "terraform-state"
         key                  = "terraform.tfstate"
-        access_key           = "aalgXIUW2QXHM5ngXCMtW3pq2bQsi7zVdQxqIn73HffrQbA1siAg6gZwxYTNmz7eVHBU93w7MAwrz3MwfJs5lg=="
     }
 }
 
