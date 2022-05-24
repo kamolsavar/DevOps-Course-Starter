@@ -34,15 +34,10 @@ The `.env` file is used by flask to set environment variables when running `flas
 Find the value for the following keys:
 Set the  .env file.
 
-###Running the tod0-app in azure
-Step 1: push the image in Dokcker Hub
-Step 2: Create cosmo mongo db for the application and use the string in .env 
-Step 3: Create the app in azure 
-Step 4: Configure the secrets in Azure
-      CLIENT_ID: create clietn_id in git hub using new url : https://todo-app-kamol.azurewebsites.net/ from the azure app
-      CLIENT_SECRET : retrieve the secret as well 
-      MONGO_DB_CONNECTION=Value
-      DATABASE_NAME=Name
+###Running the todo-terraform-app in azure
+Step 1: You have to have an azure account
+Step 2: Look for the todo-terraform-app under AmericanExpress21Group1_KamolSaha_ProjectExercise
+Step 3: Select the app and the browser should be available
 
 
 ## set .env.test

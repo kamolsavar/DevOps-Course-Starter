@@ -44,4 +44,4 @@ jobs:
     - run: docker push kamolsavar/todo-terraform-app:latest
     - run: terraform init
     - run: terraform apply -auto-approve
-    - run: curl -dH -X POST "$ (terraform output -raw cd_webhook)"
+    - run: curl -dH -X POST "$(terraform output -raw cd_webhook)"
