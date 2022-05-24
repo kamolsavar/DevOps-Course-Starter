@@ -48,8 +48,8 @@ resource "azurerm_app_service" "main" {
 
   app_settings = {
     "DOCKER_REGISTRY_SERVER_URL" = "https://index.docker.io"
-    "CLIENT_ID" = var.clientId
-    "CLIENT_SECRET" = var.clientSecret
+    "CLIENT_ID" = var.gitClientId
+    "CLIENT_SECRET" = var.gitClientSecret
     "DATABASE_NAME" = var.databseName
     "DOCKER_ENABLE_CI" = true
     "MONGO_DB_CONNECTION" = azurerm_cosmosdb_account.db.connection_strings[0]
