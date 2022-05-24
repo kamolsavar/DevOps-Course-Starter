@@ -8,12 +8,12 @@ variable "location" {
   default     = "uksouth"
 }
 
-variable "clientId" {
+variable "gitClientId" {
   description = "Application Client Id"
   sensitive = true
 }
 
-variable "clientSecret" {
+variable "gitClientSecret" {
   description = "The Client secret for the Terraform app"
   sensitive = true
 }
