@@ -37,6 +37,7 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET}}
       TF_VAR_gitClientId: ${{ secrets.OAUTH_CLIENT_ID}}
       TF_VAR_gitClientSecret: ${{ secrets.OAUTH_CLIENT_SECRET}}
+      TF_VAR_secretKey: ${{secrets.SECRET_KEY}}
     steps:
     - uses: actions/checkout@v2
     - run: docker login  --username kamolsavar --password ${{secrets.password}}
