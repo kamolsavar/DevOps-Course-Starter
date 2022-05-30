@@ -15,12 +15,12 @@ variable "gitClientSecret" {
   sensitive = true
 }
 
-variable "databseName" {
+variable "databaseName" {
   description = "The name of the database"
   default     = "kamol-terraform-cosmos-mongo-db"
 }
 
 variable "secretKey" {
   description = "The secret key"
-  default     = "secret-key"
+  sensitive = true
 }
