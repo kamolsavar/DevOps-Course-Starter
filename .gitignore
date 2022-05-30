@@ -165,3 +165,7 @@ override.tf.json
 terraform.rc
 .terraform.lock.hcl
 
+#it could also contain sensitive values in plaintext, make sure to gitignore it
+terraform.tfstate
+.terraform/ directory
+
