@@ -18,6 +18,7 @@ mongomock = "^4.0.0"
 MarkupSafe = "1.1.1"
 oauthlib = "^3.2.0"
 Flask-Login = "^0.5.0"
+loggly-python-handler = "^1.0.1"
 
 [tool.poetry.dev-dependencies]
 

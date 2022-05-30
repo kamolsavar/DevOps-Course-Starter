@@ -12,11 +12,19 @@ from todo_app.view_model import ViewModel
 from flask_login import current_user, login_user, logout_user, LoginManager, login_required, UserMixin
 from todo_app.user import  User
 from bson.objectid import ObjectId
+from loggly.handlers import HTTPSHandler
+from logging import Formatter
 
 def create_app():
    app = Flask(__name__)
    app.config.from_object(Config())
    app.config['LOGIN_DISABLED'] = os.getenv('LOGIN_DISABLED') == 'True'
+   app.logger.setLevel(app.config['LOG_LEVEL'])
+   if app.config['LOGGLY_TOKEN'] is not None:
+      handler = HTTPSHandler(f'https://logs-01.loggly.com/inputs/{app.config["LOGGLY_TOKEN"]}/tag/todo-app')
+      handler.setFormatter(Formatter("[%(asctime)s] %(levelname)s in %(module)s: %(message)s"))
+      app.logger.addHandler(handler)
+
    client = pymongo.MongoClient(os.getenv("MONGO_DB_CONNECTION"), tlsCAFile=certifi.where())
    db = client[os.getenv("DATABASE_NAME")] 
    collection = db.test_collection
