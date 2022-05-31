@@ -1,0 +1,8 @@
+
+replicas: 1
+
+databaseName: kamolsahamongo
+mongoDbConnection: mongodb://kamolsahamongo:NeLEHTV8Tmny6lpffYAHrZOiDm8gceLz0iLqlj5WwpTUZqU0mp3lUCwJKF2EDqdsaUl9fK0rWGfl40ZobliAAQ==@kamolsahamongo.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@kamolsahamongo@
+secretKey: secret-key
+clientId: a40204a3c886e5b6441d
+clientSecret: 83faf051e783e37d3454a027de61ebc64870ec18

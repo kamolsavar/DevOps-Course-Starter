@@ -1,0 +1,32 @@
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-app
+spec:
+  selector:
+    matchLabels:
+      app: todo-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: todo-app
+    spec:
+      containers:
+        - name: todo-app
+          image: todo-app/prod  
+          ports:
+          - containerPort: 80
+          env:
+            - name: DATABASE_NAME
+              value: ${{.Values.databaseName}}
+            - name: MONGO_DB_CONNECTION
+              value: ${{.Values.mongoDbConnection}}
+            - name: SECRET_KEY
+              value: ${{.Values.secretKey}}
+            - name: CLIENT_ID
+              value: ${{.Values.clientId}}
+            - name: GITHUB_CLIENT_SECRET
+              value: ${{.Values.clientSecret}}
+            
