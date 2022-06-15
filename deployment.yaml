@@ -15,18 +15,39 @@ spec:
     spec:
       containers:
         - name: todo-app
-          image: todo-app/prod  
+          image: docker.io/library/todo-app:prod
+          imagePullPolicy: Never  
           ports:
-          - containerPort: 80
+          - containerPort: 7080  
           env:
             - name: DATABASE_NAME
-              value: ${{.Values.databaseName}}
+              valueFrom:
+                secretKeyRef:
+                  name: database-name # this will be the name of your secret
+                  key: databaseNameValue # and the key for this particular value
             - name: MONGO_DB_CONNECTION
-              value: ${{.Values.mongoDbConnection}}
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-db-connection
+                  key: mongoDbConnectionValue
             - name: SECRET_KEY
-              value: ${{.Values.secretKey}}
+              valueFrom:
+                secretKeyRef:
+                  name: secret-key
+                  key: secretKeyValue
             - name: CLIENT_ID
-              value: ${{.Values.clientId}}
+              valueFrom:
+                secretKeyRef:
+                  name: client-id
+                  key: clientIdValue
             - name: GITHUB_CLIENT_SECRET
-              value: ${{.Values.clientSecret}}
+              valueFrom:
+                secretKeyRef:
+                  name: client-secret
+                  key: clientSecretValue
+            - name: PORT
+              valueFrom:
+                secretKeyRef:
+                  name: port
+                  key: portValue
             
