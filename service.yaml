@@ -9,5 +9,5 @@ spec:
     app: todo-app
   ports:
   - protocol: TCP
-    port: 7080
+    port: 80
     targetPort: 7080

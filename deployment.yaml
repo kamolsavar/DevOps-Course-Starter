@@ -18,7 +18,7 @@ spec:
           image: docker.io/library/todo-app:prod
           imagePullPolicy: Never  
           ports:
-          - containerPort: 7080  
+          - containerPort: 80  
           env:
             - name: DATABASE_NAME
               valueFrom:
