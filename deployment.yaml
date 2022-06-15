@@ -6,12 +6,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: todo-app
+      app: to-do-app
   replicas: 1
   template:
     metadata:
       labels:
-        app: todo-app
+        app: to-do-app
     spec:
       containers:
         - name: todo-app
@@ -46,5 +46,5 @@ spec:
                   name: client-secret
                   key: clientSecretValue
             - name: PORT
-              vvalue: "7080"
+              value: "7080"
             
