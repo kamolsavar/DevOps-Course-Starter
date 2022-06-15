@@ -34,10 +34,27 @@ The `.env` file is used by flask to set environment variables when running `flas
 Find the value for the following keys:
 Set the  .env file.
 
-###Running the todo-terraform-app in azure
-Step 1: You have to have an azure account
-Step 2: Look for the todo-terraform-app under AmericanExpress21Group1_KamolSaha_ProjectExercise
-Step 3: Select the app and the browser should be available
+###Running the todo-app in kubernetees
+Step 1: Run minikube start in an admin terminal to spin up your minikube cluster to run kubernetees in your local
+
+Step 2: Build the image with the following command docker build --target production --tag todo-app:prod .
+Step 3: Run minikube image load todo-app:prod 
+
+Step 4: Run kubectl apply -f service.yaml  
+
+Step 5: Run kubectl apply -f service.yaml
+
+Step 6: To spin the applicaiton run kubectl port-forward service/todo-app 7080:7080 
+
+
+###TroubleShotting:####
+
+kubectl get pods
+
+kubectl logs <my-pod>
+
+minikube --help
+
 
 
 ## set .env.test
