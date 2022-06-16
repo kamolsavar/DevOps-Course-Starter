@@ -34,10 +34,11 @@ The `.env` file is used by flask to set environment variables when running `flas
 Find the value for the following keys:
 Set the  .env file.
 
-###Running the todo-app in kubernetees
+###Running the todo-app in kubernetees#######
 Step 1: Run minikube start in an admin terminal to spin up your minikube cluster to run kubernetees in your local
 
 Step 2: Build the image with the following command docker build --target production --tag todo-app:prod .
+
 Step 3: Run minikube image load todo-app:prod 
 
 Step 4: Run kubectl apply -f service.yaml  
