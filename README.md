@@ -41,11 +41,21 @@ Step 2: Build the image with the following command docker build --target product
 
 Step 3: Run minikube image load todo-app:prod 
 
-Step 4: Run kubectl apply -f service.yaml  
+Step 4: Run kubectl apply -f to-do-app-secrets.yaml     
 
-Step 5: Run kubectl apply -f service.yaml
+Step 5: Run kubectl apply -f service.yaml  
 
-Step 6: To spin the applicaiton run kubectl port-forward service/todo-app 7080:7080 
+Step 6: Run kubectl apply -f service.yaml
+
+Step 7: To spin the applicaiton run ubectl port-forward service/todo-app 7080:80
+
+
+###if doesn't work###
+
+Step 1: minikube delete  
+Step 2: minikube start
+
+followed by the above steps
 
 
 ###TroubleShotting:####
@@ -53,6 +63,8 @@ Step 6: To spin the applicaiton run kubectl port-forward service/todo-app 7080:7
 kubectl get pods
 
 kubectl logs <my-pod>
+
+kubectl describe pods <pod>
 
 minikube --help
 
