@@ -35,12 +35,12 @@ spec:
                 secretKeyRef:
                   name: mysecret
                   key: secret-key
-            - name: CLIENT_ID
+            - name: OAUTH_CLIENT_ID
               valueFrom:
                 secretKeyRef:
                   name: mysecret
                   key: client-id
-            - name: GITHUB_CLIENT_SECRET
+            - name: OAUTH_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
                   name: mysecret
