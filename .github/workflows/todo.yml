@@ -21,7 +21,7 @@ jobs:
       # You'll need to adjust this to also pass in the relevant environment variables
       run: docker run --env MONGO_DB_CONNECTION --env DATABASE_NAME travis_todo todo_app/test/test_appUiTest.py
 
-  deployingtoheroku:
+  deployingtoazure:
     name: deploy to Azure
     runs-on: ubuntu-latest
     # Only deploy when the test pass
